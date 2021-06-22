@@ -9,41 +9,41 @@ function Content() {
 //what are you even doing with your life
 	const colours =[ {
 		type: 'normal',
-		colour: '#A8A77A'},
+		colour: '#A8A77AFF'},
 		{type: 'fire',
-		colour: '#EE8130'},
+		colour: '#EE8130FF'},
 		{type: 'water',
-		colour: '#6390F0'},
+		colour: '#6390F0FF'},
 		{type: 'electric',
-		colour: '#F7D02C'},
+		colour: '#F7D02CFF'},
 		{type: 'grass',
-		colour: '#7AC74C'},
+		colour: '#7AC74CFF'},
 		{type: 'ice',
-		colour: '#96D9D6'},
+		colour: '#96D9D6FF'},
 		{type: 'fighting',
-		colour: '#C22E28'},
+		colour: '#C22E28FF'},
 		{type: 'poison',
-		colour: '#A33EA1'},
+		colour: '#A33EA1FF'},
 		{type: 'ground',
-		colour: '#E2BF65'},
+		colour: '#E2BF65FF'},
 		{type: 'flying',
-		colour: '#A98FF3'},
+		colour: '#A98FF3FF'},
 		{type: 'psychic',
-		colour: '#F95587'},
+		colour: '#F95587FF'},
 		{type: 'bug',
-		colour: '#A6B91A'},
+		colour: '#A6B91AFF'},
 		{type: 'rock',
-		colour: '#B6A136'},
+		colour: '#B6A136FF'},
 		{type: 'ghost',
-		colour: '#735797'},
+		colour: '#735797FF'},
 		{type: 'dragon',
-		colour: '#6F35FC'},
+		colour: '#6F35FCFF'},
 		{type: 'dark',
-		colour: '#705746'},
+		colour: '#705746FF'},
 		{type: 'steel',
-		colour: '#B7B7CE'},
+		colour: '#B7B7CEFF'},
 		{type: 'fairy',
-		colour: '#D685AD'}
+		colour: '#D685ADFF'}
 ]
 //come here for all your state needs
 	const [query, setQuery] = useState(1)
@@ -76,7 +76,7 @@ function Content() {
 		for (let i = 0; i < colours.length; i++) {
 			if (colours[i].type.includes(pokeTypes[0]) || (colours[i].type.includes(pokeTypes[1]))) {
 				colourCodes.push(colours[i].colour)
-				setStateColours([colourCodes])
+				setStateColours(colourCodes)
 			}
 		}
 		//see above
@@ -161,7 +161,6 @@ function Content() {
 			<Output
 			cardColour = {stateColours}
 			cardName={pokeInfo.name}
-			isLoaded={!isLoading}
 			/>
 
 		</>
