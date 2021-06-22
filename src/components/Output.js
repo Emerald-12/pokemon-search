@@ -13,6 +13,7 @@ function Output(props) {
         return (
             <div className="pokeCard" stule={{backgroundColor: ""}} style={{backgroundImage: `linear-gradient(135, ${props.cardColour[0]}, ${props.cardColour[1]}`}}>
                 <h1>{props.cardName}</h1>
+                <h2></h2>
             </div>
         )}
 }
