@@ -59,29 +59,35 @@ function Content() {
 	//checks the full colour list to see if our type array(state) includes
 	//the type of any entry in the full colour list
 	//then pushed the colour codes for our types in to the colourCodes array
-	function findPokeColor() {
-		for (let i = 0; i < colours.length; i++) {
-			if (colours[i].type.includes(pokeTypes[0])) {
-				colourCodes.push(colours[i].colour)
-				setStateColours(colourCodes)
-			}
-		}
-		//debugging 'cuz i good dev
-		console.log(colourCodes)
-	}
+	
 
 	//same as above, but checks each entry for either type one or type 2
 	//very workaround way of doing things, blame Gustav
 	function findPokeColors() {
-		for (let i = 0; i < colours.length; i++) {
-			if (colours[i].type.includes(pokeTypes[0]) || (colours[i].type.includes(pokeTypes[1]))) {
-				colourCodes.push(colours[i].colour)
-				setStateColours(colourCodes)
+		console.log(pokeTypes)
+		if (pokeTypes.length === 1){
+			for (let i = 0; i < colours.length; i++) {
+				if(pokeTypes[0]===colours[i].type) {
+					console.log(colours[i].type)
+					colourCodes.push(colours[i].colour)
+				}}}
+
+		else if (pokeTypes.length === 2){
+			for (let i = 0; i < colours.length; i++){
+				if(pokeTypes[0]===colours[i].type) {
+					console.log(colours[i].type)
+					colourCodes.push(colours[i].colour)}
+			}}
+			for (let i = 0; i < colours.length; i++){
+				if(pokeTypes[1]===colours[i].type) {
+					console.log(colours[i].type)
+					colourCodes.push(colours[i].colour)}
 			}
-		}
+				console.log(colourCodes)				
+				setStateColours(colourCodes)}
+				
 		//see above
-		console.log(colourCodes)
-	}
+		
 
 	const searchPoke = async (e) => {
 		//defines the url dynamically using teplate literals
@@ -130,7 +136,7 @@ function Content() {
 	//executes the colour checks whenever pokeTypes state changes
 	//possibly inefficient since it also checks on initial declaration
 	useEffect(() => {
-		pokeTypes.length === 1 ? findPokeColor() : findPokeColors()
+		findPokeColors()
 	}, [pokeTypes])
 
 	return (
