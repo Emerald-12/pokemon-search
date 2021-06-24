@@ -16,6 +16,9 @@ body {
 
 p {
     font-size: 1.6rem;
+    max-width: 600px;
+    max-height: 500px;
+    white-space: pre-wrap;
 }
 
 small {

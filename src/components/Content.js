@@ -6,18 +6,23 @@ import Output from './Output'
 
 
 function Content() {
-	//this should 100% definitely be it's own document
-	//what are you even doing with your life
-	
+
 	//come here for all your state needs
 	const [query, setQuery] = useState(1)
 	const [pokeInfo, setPokeInfo] = useState({ name: '' })
-	const [isLoading, toggleIsLoading] = useState(true)
 	const [pokeTypes, setPokeTypes] = useState([])
+	const [pokeEntry, setPokeEntry] = useState()
+	const [pokeDex, setPokeDex] = useState()
+
+	//this still needs reworking
+	const [isLoading, toggleIsLoading] = useState(true)
+
 	const [stateColours, setStateColours] = useState(['white', 'white'])
 
 
 	//the array we pass the typing colours to
+	//this shouldn't work like it does, but it does, i'll leave it in for fun
+	//if it breaks move in to top level of findPokeColours
 	let colourCodes = []
 
 	//checks the full colour list to see if our type array(state) includes
@@ -59,19 +64,26 @@ function Content() {
 	const searchPoke = async (e) => {
 		//defines the url dynamically using teplate literals
 		let url = `https://pokeapi.co/api/v2/pokemon/${query}`
+		let urlDex = `https://pokeapi.co/api/v2/pokemon-species/${query}`
 		try {
 
 			//attepts to get the url and save it in a const
 			//await means that we allow the process to take time (think ping)
 			const res = await fetch(url);
-
+			const resDex = await fetch(urlDex)
 			//console.logs the state of us reaching the site (true/false)
 			console.log(`statResOK: ${res.ok}`)
+			console.log(`statResOK: ${resDex.ok}`)
+
 			const data = await res.json();
+			const dataDex = await resDex.json()
+
 			console.log(data);
+			console.log(dataDex)
 
 			//saves the data in a state so it can be used outside the function
 			setPokeInfo(data);
+			setPokeDex(dataDex)
 
 			//temporary solution, should be rewritten
 			//handles the display of pokemon name technically
@@ -81,6 +93,22 @@ function Content() {
 			//can't use the pokeInfo state but rather data since it has to occur
 			//after new data fetch
 			setPokeTypes(data.types.map((i) => i.type.name))
+			let variable = undefined
+			const getDex = () => {
+
+				for (let i = 10; i < dataDex.flavor_text_entries.length; i++) {
+					if (dataDex.flavor_text_entries[i].language.name === 'en') {
+						setPokeEntry(dataDex.flavor_text_entries[i].flavor_text.replace('\f', ' '))
+						return
+					}
+					else {
+						variable = dataDex.flavor_text_entries[i].flavor_text.replace('\f', ' ')
+						setPokeEntry(variable)
+
+					}
+				}
+			}
+			getDex()
 
 			//making a load error code here, eventually
 			//  res.ok ? null : <p>Failed to load new pokemon</p>
@@ -135,6 +163,7 @@ function Content() {
 				cardColour={stateColours}
 				cardName={pokeInfo.name}
 			/>
+			<p>{pokeEntry}</p>
 
 		</>
 	)
