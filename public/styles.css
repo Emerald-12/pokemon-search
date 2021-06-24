@@ -92,4 +92,5 @@ small {
     background-color:silver;
     padding: auto;
     margin: auto;
+    text-transform: capitalize;
 }
