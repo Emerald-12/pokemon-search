@@ -1,4 +1,4 @@
-const colours =[ {
+const typeList =[ {
     type: 'normal',
     colour: '#A8A77AFF'},
     {type: 'fire',
