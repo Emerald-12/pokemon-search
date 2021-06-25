@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import typeList from './../resources/typeList'
 import Output from './Output'
+import styles from './content.module.css'
 
 
 
@@ -12,18 +13,12 @@ function Content() {
 	const [pokeInfo, setPokeInfo] = useState({ name: '' })
 	const [pokeTypes, setPokeTypes] = useState([])
 	const [pokeEntry, setPokeEntry] = useState()
-	const [pokeDex, setPokeDex] = useState()
+	const [failedToLoad, setFailedToLoad] = useState(false)
 
 	//this still needs reworking
-	const [isLoading, toggleIsLoading] = useState(true)
+	const [isLoading, toggleIsLoading] = useState()
 
 	const [stateColours, setStateColours] = useState(['white', 'white'])
-
-
-	//the array we pass the typing colours to
-	//this shouldn't work like it does, but it does, i'll leave it in for fun
-	//if it breaks move in to top level of findPokeColours
-	let colourCodes = []
 
 	//checks the full colour list to see if our type array(state) includes
 	//the type of any entry in the full colour list
@@ -33,6 +28,7 @@ function Content() {
 	//same as above, but checks each entry for either type one or type 2
 	//very workaround way of doing things, blame Gustav
 	function findPokeColors() {
+		let colourCodes = []
 		console.log(pokeTypes)
 		if (pokeTypes.length === 1) {
 			for (let i = 0; i < typeList.length; i++) {
@@ -63,6 +59,9 @@ function Content() {
 
 	const searchPoke = async (e) => {
 		//defines the url dynamically using teplate literals
+		setFailedToLoad(false)
+		toggleIsLoading(true)
+		setPokeInfo({ name: '' })
 		let url = `https://pokeapi.co/api/v2/pokemon/${query}`
 		let urlDex = `https://pokeapi.co/api/v2/pokemon-species/${query}`
 		try {
@@ -74,26 +73,24 @@ function Content() {
 			//console.logs the state of us reaching the site (true/false)
 			console.log(`statResOK: ${res.ok}`)
 			console.log(`statResOK: ${resDex.ok}`)
+			!res.ok ? setFailedToLoad(true) : setFailedToLoad(false);
 
 			const data = await res.json();
 			const dataDex = await resDex.json()
+			res.ok ? toggleIsLoading(false) : toggleIsLoading(true);
 
 			console.log(data);
 			console.log(dataDex)
 
 			//saves the data in a state so it can be used outside the function
 			setPokeInfo(data);
-			setPokeDex(dataDex)
-
-			//temporary solution, should be rewritten
-			//handles the display of pokemon name technically
-			!pokeInfo ? toggleIsLoading(!isLoading) : toggleIsLoading(isLoading)
 
 			//sets the array state to hold the types from the pokemon
 			//can't use the pokeInfo state but rather data since it has to occur
 			//after new data fetch
 			setPokeTypes(data.types.map((i) => i.type.name))
-			let variable = undefined
+
+			//immediately invoked function, previously getDex function
 			const getDex = () => {
 
 				for (let i = 10; i < dataDex.flavor_text_entries.length; i++) {
@@ -102,13 +99,12 @@ function Content() {
 						return
 					}
 					else {
-						variable = dataDex.flavor_text_entries[i].flavor_text.replace('\f', ' ')
-						setPokeEntry(variable)
-
+						setPokeEntry(dataDex.flavor_text_entries[i].flavor_text.replace('\f', ' '))
 					}
 				}
 			}
-			getDex()
+			getDex();
+
 
 			//making a load error code here, eventually
 			//  res.ok ? null : <p>Failed to load new pokemon</p>
@@ -137,36 +133,36 @@ function Content() {
 	return (
 		<>
 			<div>
-				<label className="label" htmlFor="query">Pokemon</label>
+				<label className={styles.label} htmlFor="query">Pokemon</label>
 
-				<input className="input" type="text" name="query" placeholder="Enter Name or ID"
+				<input className={styles.input} type="text" name="query" placeholder="Enter Name or ID"
 					ref={input => input && input.focus()}
 					onFocus={handleFocus}
 					onKeyPress={(e) => handleEnter(e)}
 					onChange={(e) => setQuery(e.target.value)}
 				/>
 
-				<button className="button"
+				<button className={styles.button}
 					onClick={() => searchPoke()}
 				>Search
 				</button>
-
-				{
-					//ternary! fancy term for a variant of if
-					//if still loading in data, don't do stuff
-					//if not loading in stuff, make this html element
-				}
-				{isLoading ? null : <p>{pokeInfo.name}</p>}
 			</div>
 
-			<Output
-				cardColour={stateColours}
-				cardName={pokeInfo.name}
-			/>
-			<p>{pokeEntry}</p>
-
+			<div>
+				{(isLoading && !failedToLoad) ?
+					(<h1 className={styles.responseMessage}>Loading Pokemon</h1>) : (
+						failedToLoad ?
+							(<h1 className={styles.responseMessage}>Failed to load Pokemon</h1>) :
+							(<div>
+								<h1 style={{ color: 'Black' }} classname={styles.responseMessage}>Your Pokemon is:</h1>
+								<Output
+									cardColour={stateColours}
+									cardName={pokeInfo.name}
+									pokeEntry={pokeEntry}
+								/>
+							</div>))}
+			</div>
 		</>
 	)
 }
-
 export default Content
