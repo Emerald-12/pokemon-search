@@ -1,0 +1,23 @@
+.pokeCard{
+    height: 40vh;
+    width: 80vw;
+    color:black;
+    background-color:silver;
+    padding: auto;
+    margin: 8rem;
+    text-transform: capitalize;
+}
+
+.dexEntry{
+    margin: 5rem 2rem;
+    white-space: pre-wrap;
+    max-width: 50%;
+    font-size:2rem;
+}
+
+.pokeCardTitle{
+    padding: 1rem 2rem;
+    font-size: 3rem;
+    color: black;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}

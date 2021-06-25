@@ -1,0 +1,32 @@
+html {
+    font-size: 10px;
+    background-color: silver;
+}
+
+* {
+    box-sizing: border-box;
+    outline:none;
+    border:none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 1.6rem;
+    max-width: 600px;
+    max-height: 500px;
+    white-space: pre-wrap;
+    color: white;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 40px;
+}
+
+@media (min-width:768px){
+    
+}
