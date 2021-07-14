@@ -1,23 +1,47 @@
 .pokeCard{
-    height: 40vh;
+    height: 50vh;
     width: 80vw;
     color:black;
     background-color:silver;
     padding: auto;
-    margin: 8rem;
+    margin: 0 auto;
     text-transform: capitalize;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+}
+
+.pokeText{
+    height: 100%;
+    max-width: 30%;
 }
 
 .dexEntry{
-    margin: 5rem 2rem;
+    /* margin: 5rem 2rem; */
     white-space: pre-wrap;
-    max-width: 50%;
     font-size:2rem;
 }
 
 .pokeCardTitle{
     padding: 1rem 2rem;
-    font-size: 3rem;
+    font-size: 4rem;
     color: black;
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    /* -webkit-text-stroke: 1px white; */
+}
+
+.pokeSprites{
+    max-width: 30%;
+    margin: 0;
+}
+
+.pokeStats{
+    width: 30%;
+    text-align:left;
+    flex-direction: column;
+    float:right;
+}
+
+.pokeStats p{
+    align-items:
+    /* margin: 1rem 0; */
 }

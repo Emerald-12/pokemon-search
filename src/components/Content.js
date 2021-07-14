@@ -9,7 +9,7 @@ import styles from './content.module.css'
 function Content() {
 
 	//come here for all your state needs
-	const [query, setQuery] = useState(1)
+	const [query, setQuery] = useState('')
 	const [pokeInfo, setPokeInfo] = useState({ name: '' })
 	const [pokeTypes, setPokeTypes] = useState([])
 	const [pokeEntry, setPokeEntry] = useState()
@@ -29,11 +29,9 @@ function Content() {
 	//very workaround way of doing things, blame Gustav
 	function findPokeColors() {
 		let colourCodes = []
-		console.log(pokeTypes)
 		if (pokeTypes.length === 1) {
 			for (let i = 0; i < typeList.length; i++) {
 				if (pokeTypes[0] === typeList[i].type) {
-					console.log(typeList[i].type)
 					colourCodes.push(typeList[i].colour)
 				}
 			}
@@ -42,14 +40,12 @@ function Content() {
 		else if (pokeTypes.length === 2) {
 			for (let i = 0; i < typeList.length; i++) {
 				if (pokeTypes[0] === typeList[i].type) {
-					console.log(typeList[i].type)
 					colourCodes.push(typeList[i].colour)
 				}
 			}
 		}
 		for (let i = 0; i < typeList.length; i++) {
 			if (pokeTypes[1] === typeList[i].type) {
-				console.log(typeList[i].type)
 				colourCodes.push(typeList[i].colour)
 			}
 		}
@@ -81,25 +77,23 @@ function Content() {
 
 			console.log(data);
 			console.log(dataDex)
-
-			//saves the data in a state so it can be used outside the function
+			
 			setPokeInfo(data);
-
-			//sets the array state to hold the types from the pokemon
-			//can't use the pokeInfo state but rather data since it has to occur
-			//after new data fetch
-			setPokeTypes(data.types.map((i) => i.type.name))
-
-			//immediately invoked function, previously getDex function
+			
+				//sets the array state to hold the types from the pokemon
+				//can't use the pokeInfo state but rather data since it has to occur
+				//after new data fetch
+				setPokeTypes(data.types.map((i) => i.type.name))
+				//immediately invoked function, previously getDex function
 			const getDex = () => {
-
+				
 				for (let i = 10; i < dataDex.flavor_text_entries.length; i++) {
 					if (dataDex.flavor_text_entries[i].language.name === 'en') {
-						setPokeEntry(dataDex.flavor_text_entries[i].flavor_text.replace('\f', ' '))
+						setPokeEntry(dataDex.flavor_text_entries[i].flavor_text)
 						return
 					}
 					else {
-						setPokeEntry(dataDex.flavor_text_entries[i].flavor_text.replace('\f', ' '))
+						setPokeEntry(dataDex.flavor_text_entries[i].flavor_text)
 					}
 				}
 			}
@@ -123,7 +117,7 @@ function Content() {
 			handleFocus(e)
 		}
 	}
-
+	
 	//executes the colour checks whenever pokeTypes state changes
 	//possibly inefficient since it also checks on initial declaration
 	useEffect(() => {
@@ -139,7 +133,7 @@ function Content() {
 					ref={input => input && input.focus()}
 					onFocus={handleFocus}
 					onKeyPress={(e) => handleEnter(e)}
-					onChange={(e) => setQuery(e.target.value)}
+					onChange={(e) => (e.target.value.toLowerCase()==='meowstic') ? setQuery(678) : (e.target.value.toLowerCase() == 10025) ? setQuery(678):setQuery(e.target.value.toLowerCase()) }
 				/>
 
 				<button className={styles.button}
@@ -157,7 +151,7 @@ function Content() {
 								<h1 style={{ color: 'Black' }} classname={styles.responseMessage}>Your Pokemon is:</h1>
 								<Output
 									cardColour={stateColours}
-									cardName={pokeInfo.name}
+									pokeInfo={pokeInfo}
 									pokeEntry={pokeEntry}
 								/>
 							</div>))}
