@@ -15,7 +15,7 @@ function Output(props) {
                 </div>
 
                 <div className={styles.pokeSprites}>
-                {props.pokeInfo.name  !== '' &&
+                {props.pokeInfo.name  !== '' && props.pokeInfo.name !== undefined &&
                 <>
                     <div>
                         <img src={props.pokeInfo.sprites.front_default} alt='' />
@@ -26,11 +26,11 @@ function Output(props) {
                         <img src={props.pokeInfo.sprites.front_shiny} alt='' />
                         <img src={props.pokeInfo.sprites.back_shiny} alt='' />
                     </div>
-                    </>}
+                </>}
                 </div>
         
                 <div className={styles.pokeStats}>
-                {props.pokeInfo.name  !== '' &&    
+                {props.pokeInfo.name  !== '' && props.pokeInfo.name !== undefined && 
                 <div style={{display:'flex',
                 flexDirection:'row'}}>
                     <div style={{display:'flex',

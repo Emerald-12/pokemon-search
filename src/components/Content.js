@@ -57,7 +57,9 @@ function Content() {
 		//defines the url dynamically using teplate literals
 		setFailedToLoad(false)
 		toggleIsLoading(true)
-		setPokeInfo({ name: '' })
+		setPokeInfo()
+		setPokeTypes([])
+		setPokeEntry()
 		let url = `https://pokeapi.co/api/v2/pokemon/${query}`
 		let urlDex = `https://pokeapi.co/api/v2/pokemon-species/${query}`
 		try {
