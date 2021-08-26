@@ -1,19 +1,20 @@
 .pokeCard{
-    height: 50vh;
-    width: 80vw;
+    height: 60vh;
+    width: 90vw;
     color:black;
     background-color:silver;
-    padding: auto;
+    padding: 20px;
     margin: 0 auto;
     text-transform: capitalize;
     display: flex;
     justify-content: space-between;
     font-size: 10px;
+    border-radius:15px;
 }
 
 .pokeText{
     height: 100%;
-    max-width: 30%;
+    max-width: 20%;
 }
 
 .dexEntry{
@@ -26,22 +27,19 @@
     padding: 1rem 2rem;
     font-size: 4rem;
     color: black;
+    margin:0;
     /* -webkit-text-stroke: 1px white; */
 }
 
 .pokeSprites{
-    max-width: 30%;
+    min-width: 40%;
     margin: 0;
 }
 
 .pokeStats{
-    width: 30%;
+    width: 20%;
     text-align:left;
     flex-direction: column;
     float:right;
 }
 
-.pokeStats p{
-    align-items:
-    /* margin: 1rem 0; */
-}

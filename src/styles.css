@@ -23,8 +23,8 @@ p {
 }
 
 .container {
-    margin: 0 auto;
-    padding: 40px;
+    margin: 0 1rem;
+    padding: 10px;
 }
 
 @media (min-width:768px){
