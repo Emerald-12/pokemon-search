@@ -49,7 +49,6 @@ function Content() {
 				colourCodes.push(typeList[i].colour)
 			}
 		}
-		console.log(colourCodes)
 		setStateColours(colourCodes)
 	}
 
@@ -69,16 +68,11 @@ function Content() {
 			const res = await fetch(url);
 			const resDex = await fetch(urlDex)
 			//console.logs the state of us reaching the site (true/false)
-			console.log(`statResOK: ${res.ok}`)
-			console.log(`statResOK: ${resDex.ok}`)
 			!res.ok ? setFailedToLoad(true) : setFailedToLoad(false);
 
 			const data = await res.json();
 			const dataDex = await resDex.json()
 			res.ok ? toggleIsLoading(false) : toggleIsLoading(true);
-
-			console.log(data);
-			console.log(dataDex)
 			
 			setPokeInfo(data);
 			
@@ -124,6 +118,7 @@ function Content() {
 	//possibly inefficient since it also checks on initial declaration
 	useEffect(() => {
 		findPokeColors()
+		// eslint-disable-next-line
 	}, [pokeTypes])
 
 	return (
@@ -135,7 +130,7 @@ function Content() {
 					ref={input => input && input.focus()}
 					onFocus={handleFocus}
 					onKeyPress={(e) => handleEnter(e)}
-					onChange={(e) => (e.target.value.toLowerCase()==='meowstic') ? setQuery(678) : (e.target.value.toLowerCase() == 10025) ? setQuery(678):setQuery(e.target.value.toLowerCase()) }
+					onChange={(e) => (e.target.value.toLowerCase()==='meowstic') ? setQuery(678) : (e.target.value.toLowerCase() === 10025) ? setQuery(678):setQuery(e.target.value.toLowerCase()) }
 				/>
 
 				<button className={styles.button}
@@ -150,7 +145,7 @@ function Content() {
 						failedToLoad ?
 							(<h1 className={styles.responseMessage}>Failed to load Pokemon</h1>) :
 							(<div>
-								<h1 style={{ color: 'Black' }} classname={styles.responseMessage}>Your Pokemon is:</h1>
+								<h1 style={{ color: 'Black' }} className={styles.responseMessage}>Your Pokemon is:</h1>
 								<Output
 									cardColour={stateColours}
 									pokeInfo={pokeInfo}
