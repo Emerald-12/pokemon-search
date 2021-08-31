@@ -10,7 +10,7 @@ function Output(props) {
                         :{ backgroundColor: 'silver' }}>
 
                 <div className={styles.pokeText}>
-                    <h1 className={styles.pokeCardTitle}>{props.pokeInfo.name}</h1>
+                    <h2 className={styles.pokeCardTitle}>{props.pokeInfo.name}</h2>
                     <h2 className={styles.dexEntry}>{props.pokeEntry}</h2>
                 </div>
 
