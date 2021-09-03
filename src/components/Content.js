@@ -124,7 +124,7 @@ function Content() {
 	return (
 		<>
 			<div>
-				<label className={styles.label} htmlFor="query">Pokemon</label>
+				<label className={styles.label} htmlFor="query">Pokemon: </label>
 
 				<input className={styles.input} type="text" name="query" placeholder="Enter Name or ID"
 					ref={input => input && input.focus()}

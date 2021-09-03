@@ -29,19 +29,19 @@ function Output(props) {
         
                 <div className={styles.pokeStats}>
                 {props.pokeInfo.name  !== '' && props.pokeInfo.name !== undefined && 
-                <div >
-                    <div >
+                <>
+                    <div className={styles.stat1}>
                         <p>HP: {props.pokeInfo.stats[0].base_stat}</p>
                         <p>Attack: {props.pokeInfo.stats[1].base_stat}</p>
                         <p>Defense: {props.pokeInfo.stats[2].base_stat}</p>
                     </div>
 
-                    <div >
+                    <div className={styles.stat2}>
                         <p>S. Attack: {props.pokeInfo.stats[3].base_stat}</p>
                         <p>S. Defence: {props.pokeInfo.stats[4].base_stat}</p>
                         <p>Speed: {props.pokeInfo.stats[5].base_stat}</p>
                     </div>
-                </div>}
+                </>}
                 </div>
             </div>) : (<div style={{ backgroundColor: 'silver' }}></div>)
     )

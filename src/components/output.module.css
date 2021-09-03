@@ -1,11 +1,10 @@
 .pokeCard{
-    height: 50vh;
+    height: 70vh;
     width: 90vw;
     color:black;
     background-color:silver;
-    padding: 20px;
     margin: 0 auto;
-    text-transform: capitalize;
+    
     font-size: 10px;
     border-radius:15px;
     display: grid; 
@@ -17,6 +16,8 @@
     "dex dex dex";
 
 }
+
+.pokeCard ::first-letter {text-transform: uppercase}
 @media (max-width: 769px) {
     .pokeCard {
         height:auto;
@@ -28,18 +29,18 @@
                 'sprites'
                 'dex'
                 'stats'
-        
     }
   }
 
 .dexEntry{
     /* margin: 5rem 2rem; */
     grid-area:dex;
-    font-size:2rem;
+    font-size:28px;
+    margin:5rem;
 }
 
 .pokeCardTitle{
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     font-size: 3rem;
     color: black;
     margin:0;
@@ -50,7 +51,6 @@
 }
 
 .pokeSprites{
-    width: 30%;
     margin: 0;
     grid-area: sprites;
     display: grid; 
@@ -66,10 +66,24 @@
 }
 
 .pokeStats{
-    width: 40%;
     text-align:left;
     grid-area:stats;
     justify-self: center;
     align-self: center;
+    width: 100%;
+
+    display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+            "stat1 stat2"; 
 }
 
+.stat1 {
+    grid-area:stat1;
+}
+
+.stat2 {
+    grid-area:stat2;
+}

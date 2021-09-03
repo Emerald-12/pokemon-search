@@ -9,15 +9,17 @@
     padding: 0.5rem 2rem;
     line-height: 2.8rem;
     border-radius: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #171717;
     margin-bottom: 1rem;
+    margin-right: 5px;
+    
 }
 
 .button {
     background-color: rgba(0,0,0,0.75);
     color: white;
-    padding: 1rem 2rem;
-    border: 1px solid ;
+    padding: 1.065rem 2rem;
+    border: 2px solid #fff;
     border-radius: 20px;
     font-size: 1.4rem;
     cursor: pointer;
