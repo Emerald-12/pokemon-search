@@ -1,6 +1,6 @@
 .pokeCard{
-    height: 70vh;
-    width: 90vw;
+    height: 60vh;
+    width: 95vw;
     color:black;
     background-color:silver;
     margin: 0 auto;
@@ -36,7 +36,7 @@
     /* margin: 5rem 2rem; */
     grid-area:dex;
     font-size:28px;
-    margin:5rem;
+    margin:1.5rem 3rem;
 }
 
 .pokeCardTitle{
