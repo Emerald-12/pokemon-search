@@ -1,10 +1,9 @@
 .pokeCard{
     height: 60vh;
-    width: 95vw;
     color:black;
     background-color:silver;
-    margin: 0 auto;
-    
+    margin: auto;
+    width:90vw;
     font-size: 10px;
     border-radius:15px;
     display: grid; 
@@ -21,7 +20,10 @@
 @media (max-width: 769px) {
     .pokeCard {
         height:auto;
+        width:80;
         display: grid; 
+        margin:auto;
+        margin-bottom:100px;
             grid-template-columns: 1fr;  
             gap: 0px 0px; 
             grid-template-areas: 
@@ -71,6 +73,7 @@
     justify-self: center;
     align-self: center;
     width: 100%;
+    padding:5;
 
     display: grid; 
         grid-template-columns: 1fr 1fr; 
